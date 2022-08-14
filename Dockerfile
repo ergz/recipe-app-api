@@ -16,6 +16,7 @@ RUN python -m venv .venv && \
 		--no-create-home \
 		django-user
 
-ENV PATH=".venv/bin:$PATH"
+# adds .venv path as the place to look first
+ENV PATH=".venv/bin:$PATH" 
 
 USER django-user
