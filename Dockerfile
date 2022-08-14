@@ -8,12 +8,12 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-ARG DEV=false
-RUN python -m venv .venv && \
-	.venv/bin/pip install --upgrade pip && \
-	.venv/bin/pip install -r /tmp/requirements.txt && \
-	if [$DEV = "true"]; \
-		then .venv/bin/pip install -r /tmp/requirements-dev.txt; \
+ARG DEV=true
+RUN python -m venv /py && \
+	/py/bin/pip install --upgrade pip && \
+	/py/bin/pip install -r /tmp/requirements.txt && \
+	if [ $DEV = "true" ]; \
+		then /py/bin/pip install -r /tmp/requirements-dev.txt; \
 	fi && \
 	rm -rf /tmp && \
 	adduser \
@@ -22,6 +22,6 @@ RUN python -m venv .venv && \
 		django-user
 
 # adds .venv path as the place to look first
-ENV PATH=".venv/bin:$PATH" 
+ENV PATH="/py/bin:$PATH" 
 
 USER django-user
