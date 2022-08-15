@@ -4,5 +4,5 @@ sqlparse==0.4.2
 tzdata==2022.2
 djangorestframework
 psycopg2>=2.8.6,<2.9
-
+drf-spectacular
 
